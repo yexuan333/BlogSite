@@ -1,0 +1,8 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Tags - 标签 - Home</title>
+        <link>http://124.223.208.207/tags/</link>
+        <description>Tags - 标签 - Home</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yexuan.d@qq.com (yexuan)</managingEditor>
+            <webMaster>yexuan.d@qq.com (yexuan)</webMaster><atom:link href="http://124.223.208.207/tags/" rel="self" type="application/rss+xml" /></channel>
+</rss>

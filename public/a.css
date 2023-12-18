@@ -1,0 +1,7 @@
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000; /* 背景颜色 */
+    z-index: -1; /* 确保它在其他内容的后面 */
+  }

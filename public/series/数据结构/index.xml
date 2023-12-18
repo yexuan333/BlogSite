@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>数据结构 - 系列 - Home</title>
+        <link>http://124.223.208.207/series/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+        <description>数据结构 - 系列 - Home</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yexuan.d@qq.com (yexuan)</managingEditor>
+            <webMaster>yexuan.d@qq.com (yexuan)</webMaster><lastBuildDate>Thu, 16 Nov 2023 14:51:07 &#43;0800</lastBuildDate><atom:link href="http://124.223.208.207/series/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="self" type="application/rss+xml" /><item>
+    <title>RTree</title>
+    <link>http://124.223.208.207/posts/datastructure/%E4%BB%8Ertree%E5%88%B0rtree/</link>
+    <pubDate>Thu, 16 Nov 2023 14:51:07 &#43;0800</pubDate><author>
+        <name>yexuan</name>
+    </author><guid>http://124.223.208.207/posts/datastructure/%E4%BB%8Ertree%E5%88%B0rtree/</guid>
+    <description><![CDATA[RTree 背景RTree 是一种用于多维数据查询和存储的树形数据结构，最早由 Antonin Guttman 在 1984 年提出R-TREES: A DYNAMIC INDEX STRUCTURE FOR SPATIAL SEARCHING。在RTree]]></description>
+</item></channel>
+</rss>

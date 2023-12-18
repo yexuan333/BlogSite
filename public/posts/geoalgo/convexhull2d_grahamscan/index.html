@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>ConvexHull2D GrahamScan - Home</title><meta name="Description" content=""><meta property="og:title" content="ConvexHull2D GrahamScan" />
+<meta property="og:description" content="简介ConvexHull2D是在二维平面上给定点集的最小凸多边形。Graham Scan算法是一种有效计算凸包的方法。 算法步骤 1. 找到基准点 从点" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://124.223.208.207/posts/geoalgo/convexhull2d_grahamscan/" /><meta property="og:image" content="http://124.223.208.207/profile_photo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-27T02:50:04+08:00" />
+<meta property="article:modified_time" content="2023-11-27T02:50:04+08:00" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://124.223.208.207/profile_photo.png"/>
+
+<meta name="twitter:title" content="ConvexHull2D GrahamScan"/>
+<meta name="twitter:description" content="简介ConvexHull2D是在二维平面上给定点集的最小凸多边形。Graham Scan算法是一种有效计算凸包的方法。 算法步骤 1. 找到基准点 从点"/>
+<meta name="application-name" content="Home">
+<meta name="apple-mobile-web-app-title" content="Home">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="http://124.223.208.207/posts/geoalgo/convexhull2d_grahamscan/" /><link rel="prev" href="http://124.223.208.207/posts/datastructure/%E4%BB%8Ertree%E5%88%B0rtree/" /><link rel="next" href="http://124.223.208.207/posts/geoalgo/convexhull3d_incremental/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ConvexHull2D GrahamScan",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/124.223.208.207\/posts\/geoalgo\/convexhull2d_grahamscan\/"
+        },"genre": "posts","wordcount":  395 ,
+        "url": "http:\/\/124.223.208.207\/posts\/geoalgo\/convexhull2d_grahamscan\/","datePublished": "2023-11-27T02:50:04+08:00","dateModified": "2023-11-27T02:50:04+08:00","publisher": {
+            "@type": "Organization",
+            "name": "yexuan"},"author": {
+                "@type": "Person",
+                "name": "yexuan"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Home">Home</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 全部文章 </a><a class="menu-item" href="/series/"> 系列 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Home">Home</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">全部文章</a><a class="menu-item" href="/series/" title="">系列</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#算法步骤">算法步骤</a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#1-找到基准点">1. 找到基准点</a></li>
+                <li><a href="#2-排序">2. 排序</a></li>
+                <li><a href="#3-创建凸包">3. 创建凸包</a></li>
+                <li><a href="#4-完成凸包">4. 完成凸包</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#优点">优点</a></li>
+    <li><a href="#缺点">缺点</a></li>
+    <li><a href="#参考文献">参考文献</a></li>
+    <li><a href="#项目链接">项目链接</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">ConvexHull2D GrahamScan</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">yexuan</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/"><i class="far fa-list-alt fa-fw"></i>计算几何</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-27">2023-11-27</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-27">2023-11-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 395 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+        </div><div class="details series-nav open">
+                                <div class="details-summary series-title">
+                                    <span>系列 - 计算几何</span>
+                                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                                </div>
+                                <div class="details-content series-content">
+                                    <nav>
+                                        <ul><li><span class="active">ConvexHull2D GrahamScan</span></li>
+                                                    <li><a href="/posts/geoalgo/convexhull3d_incremental/">ConvexHull3D_Incremental</a></li></ul>
+                                    </nav>
+                                </div>
+                            </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#算法步骤">算法步骤</a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#1-找到基准点">1. 找到基准点</a></li>
+                <li><a href="#2-排序">2. 排序</a></li>
+                <li><a href="#3-创建凸包">3. 创建凸包</a></li>
+                <li><a href="#4-完成凸包">4. 完成凸包</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#优点">优点</a></li>
+    <li><a href="#缺点">缺点</a></li>
+    <li><a href="#参考文献">参考文献</a></li>
+    <li><a href="#项目链接">项目链接</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="简介" class="headerLink">
+    <a href="#%e7%ae%80%e4%bb%8b" class="header-mark"></a>简介</h2><p><code>ConvexHull2D</code>是在二维平面上给定点集的最小凸多边形。<code>Graham Scan</code>算法是一种有效计算凸包的方法。</p>
+  <div style="display: flex; justify-content: center;">
+  <image src="/Geometry/GrahamScan.gif"  style="width: 40%; height: auto; margin-right: 10px;">
+  </div>
+<h2 id="算法步骤" class="headerLink">
+    <a href="#%e7%ae%97%e6%b3%95%e6%ad%a5%e9%aa%a4" class="header-mark"></a>算法步骤</h2><h5 id="1-找到基准点" class="headerLink">
+    <a href="#1-%e6%89%be%e5%88%b0%e5%9f%ba%e5%87%86%e7%82%b9" class="header-mark"></a>1. 找到基准点</h5><ul>
+<li>从点集中选取最低（或最高）Y坐标的点。</li>
+<li>如果有多个点具有相同的Y坐标，则选择X坐标最小（或最大）的点作为基准点。</li>
+</ul>
+<h5 id="2-排序" class="headerLink">
+    <a href="#2-%e6%8e%92%e5%ba%8f" class="header-mark"></a>2. 排序</h5><ul>
+<li>按照每个点相对于基准点的极角进行排序。</li>
+</ul>
+<h5 id="3-创建凸包" class="headerLink">
+    <a href="#3-%e5%88%9b%e5%bb%ba%e5%87%b8%e5%8c%85" class="header-mark"></a>3. 创建凸包</h5><ul>
+<li>初始化栈，将基准点和排序后的前两个点放入栈中。</li>
+<li>遍历排序后的其他点，对于每个点执行以下操作：
+<ul>
+<li>当栈顶的两个点与当前点不构成“右转”时，从栈中弹出顶部点。</li>
+<li>将当前点压入栈。</li>
+</ul>
+</li>
+</ul>
+<h5 id="4-完成凸包" class="headerLink">
+    <a href="#4-%e5%ae%8c%e6%88%90%e5%87%b8%e5%8c%85" class="header-mark"></a>4. 完成凸包</h5><ul>
+<li>遍历结束后，栈中剩余的点即构成凸包的顶点。</li>
+</ul>
+<h2 id="优点" class="headerLink">
+    <a href="#%e4%bc%98%e7%82%b9" class="header-mark"></a>优点</h2><ul>
+<li><strong>效率高</strong>：时间复杂度为<code>O(n log n)</code>，主要耗时在于排序步骤。</li>
+</ul>
+<h2 id="缺点" class="headerLink">
+    <a href="#%e7%bc%ba%e7%82%b9" class="header-mark"></a>缺点</h2><ul>
+<li><strong>不适用于动态点集</strong>：对于频繁变动的点集，需要重新计算整个凸包。</li>
+</ul>
+<h2 id="参考文献" class="headerLink">
+    <a href="#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae" class="header-mark"></a>参考文献</h2><p>[1]计算几何算法与应用:第3版.第1章.邓俊辉译</p>
+<h2 id="项目链接" class="headerLink">
+    <a href="#%e9%a1%b9%e7%9b%ae%e9%93%be%e6%8e%a5" class="header-mark"></a>项目链接</h2><p><a href="https://github.com/yexuan333/GeoAlgoVisual" target="_blank" rel="noopener noreferrer">https://github.com/yexuan333/GeoAlgoVisual</a></p>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-11-27</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/posts/geoalgo/convexhull2d_grahamscan/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                    </span></div>
+            <div class="post-info-share"></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/datastructure/%E4%BB%8Ertree%E5%88%B0rtree/" class="prev" rel="prev" title="RTree"><i class="fas fa-angle-left fa-fw"></i>RTree</a>
+            <a href="/posts/geoalgo/convexhull3d_incremental/" class="next" rel="next" title="ConvexHull3D_Incremental">ConvexHull3D_Incremental<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">yexuan</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/" target="_blank">皖ICP备2023023596号</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["yexuan333"],"clientID":"a6999600781701d4e9a3","clientSecret":"7d6a82ec2b58a2253b9b174f21ceb99dd78f6a8e","id":"2023-11-27T02:50:04+08:00","owner":"yexuan333","repo":"BlogGitTalKAPPK","title":"ConvexHull2D GrahamScan"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":10,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/js/gitalk.min.js" defer></script></div>
+</body>
+
+</html>

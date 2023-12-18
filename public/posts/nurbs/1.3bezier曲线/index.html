@@ -1,0 +1,314 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>1.3Bezier曲线 - Home</title><meta name="Description" content=""><meta property="og:title" content="1.3Bezier曲线" />
+<meta property="og:description" content="贝塞尔曲线是一种幂基曲线。一条n次Bezier曲线可以表示为 $$ C(u)=\sum_{i=0}^nB_{i,n}(u)P_i,0\leq u \leq 1 $$ 其中，基函数（也称为混合函数）$B_{i,n}(u)$是著名的n次B" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://124.223.208.207/posts/nurbs/1.3bezier%E6%9B%B2%E7%BA%BF/" /><meta property="og:image" content="http://124.223.208.207/profile_photo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-12T14:51:07+08:00" />
+<meta property="article:modified_time" content="2023-11-12T14:51:07+08:00" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://124.223.208.207/profile_photo.png"/>
+
+<meta name="twitter:title" content="1.3Bezier曲线"/>
+<meta name="twitter:description" content="贝塞尔曲线是一种幂基曲线。一条n次Bezier曲线可以表示为 $$ C(u)=\sum_{i=0}^nB_{i,n}(u)P_i,0\leq u \leq 1 $$ 其中，基函数（也称为混合函数）$B_{i,n}(u)$是著名的n次B"/>
+<meta name="application-name" content="Home">
+<meta name="apple-mobile-web-app-title" content="Home">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="http://124.223.208.207/posts/nurbs/1.3bezier%E6%9B%B2%E7%BA%BF/" /><link rel="prev" href="http://124.223.208.207/posts/nurbs/1.4%E6%9C%89%E7%90%86bezier%E6%9B%B2%E7%BA%BF/" /><link rel="next" href="http://124.223.208.207/posts/nurbs/1.2%E5%B9%82%E5%9F%BA%E6%9B%B2%E7%BA%BF/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "1.3Bezier曲线",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/124.223.208.207\/posts\/nurbs\/1.3bezier%E6%9B%B2%E7%BA%BF\/"
+        },"genre": "posts","wordcount":  638 ,
+        "url": "http:\/\/124.223.208.207\/posts\/nurbs\/1.3bezier%E6%9B%B2%E7%BA%BF\/","datePublished": "2023-11-12T14:51:07+08:00","dateModified": "2023-11-12T14:51:07+08:00","publisher": {
+            "@type": "Organization",
+            "name": "yexuan"},"author": {
+                "@type": "Person",
+                "name": "yexuan"
+            },"description": ""
+    }
+    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+</head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Home">Home</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 全部文章 </a><a class="menu-item" href="/series/"> 系列 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Home">Home</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">全部文章</a><a class="menu-item" href="/series/" title="">系列</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#bernstein多项式性质">Bernstein多项式性质</a></li>
+            <li><a href="#de-casteljaus-algorithm德卡斯特里奥算法">De Casteljau&rsquo;s algorithm德卡斯特里奥算法</a></li>
+            <li><a href="#p_kiu_o1-u_0p_k-1iu_ou_0p_k-1i1u_o">$$P_{k,i}(u_o)=(1-u_0)P_{k-1,i}(u_o)+u_0P_{k-1,i+1}(u_o)$$</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1.3Bezier曲线</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">yexuan</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-series">系列 <a href="/series/%E9%9D%9E%E5%9D%87%E5%8C%80%E6%9C%89%E7%90%86b%E6%A0%B7%E6%9D%A1%E7%AC%94%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>非均匀有理B样条笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-12">2023-11-12</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-12">2023-11-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 638 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details series-nav open">
+                                <div class="details-summary series-title">
+                                    <span>系列 - 非均匀有理B样条笔记</span>
+                                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                                </div>
+                                <div class="details-content series-content">
+                                    <nav>
+                                        <ul>
+                                                    <li><a href="/posts/nurbs/1.1%E9%9A%90%E5%BC%8F%E5%92%8C%E5%8F%82%E6%95%B0%E8%A1%A8%E7%A4%BA/">1.1隐式和参数表示</a></li>
+                                                    <li><a href="/posts/nurbs/1.2%E5%B9%82%E5%9F%BA%E6%9B%B2%E7%BA%BF/">1.2幂基曲线</a></li><li><span class="active">1.3Bezier曲线</span></li>
+                                                    <li><a href="/posts/nurbs/1.4%E6%9C%89%E7%90%86bezier%E6%9B%B2%E7%BA%BF/">1.4有理Bezier曲线</a></li>
+                                                    <li><a href="/posts/nurbs/1.5%E5%BC%A0%E9%87%8F%E7%A7%AF%E6%9B%B2%E9%9D%A2/">1.5张量积曲面</a></li>
+                                                    <li><a href="/posts/nurbs/2.1%E5%89%8D%E8%A8%80/">2.1前言</a></li>
+                                                    <li><a href="/posts/nurbs/2.2b%E6%A0%B7%E6%9D%A1%E5%9F%BA%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E6%80%A7%E8%B4%A8/">2.2 B样条基函数的定义和性质</a></li>
+                                                    <li><a href="/posts/nurbs/2.3b%E6%A0%B7%E6%9D%A1%E5%9F%BA%E5%87%BD%E6%95%B0%E7%9A%84%E5%AF%BC%E6%95%B0/">2.3 B样条基函数的导数</a></li>
+                                                    <li><a href="/posts/nurbs/2.4b%E6%A0%B7%E6%9D%A1%E5%9F%BA%E5%87%BD%E6%95%B0%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%9A%84%E6%80%A7%E8%B4%A8/">2.4 B样条基函数进一步的性质</a></li>
+                                                    <li><a href="/posts/nurbs/2.5b%E6%A0%B7%E6%9D%A1%E5%9F%BA%E5%87%BD%E6%95%B0%E7%9A%84%E8%AE%A1%E7%AE%97/">2.5B样条基函数的计算</a></li>
+                                                    <li><a href="/posts/nurbs/3.1%E5%BC%95%E8%A8%80/">3.1引言</a></li>
+                                                    <li><a href="/posts/nurbs/3.2b%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E6%80%A7%E8%B4%A8/">3.2B样条曲线的定义和性质</a></li></ul>
+                                    </nav>
+                                </div>
+                            </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#bernstein多项式性质">Bernstein多项式性质</a></li>
+            <li><a href="#de-casteljaus-algorithm德卡斯特里奥算法">De Casteljau&rsquo;s algorithm德卡斯特里奥算法</a></li>
+            <li><a href="#p_kiu_o1-u_0p_k-1iu_ou_0p_k-1i1u_o">$$P_{k,i}(u_o)=(1-u_0)P_{k-1,i}(u_o)+u_0P_{k-1,i+1}(u_o)$$</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>贝塞尔曲线是一种幂基曲线。一条n次Bezier曲线可以表示为
+$$
+C(u)=\sum_{i=0}^nB_{i,n}(u)P_i,0\leq u \leq 1
+$$
+其中，基函数（也称为混合函数）$B_{i,n}(u)$是著名的n次Bernstein（伯恩斯坦多项式），其定义为
+$$
+B_{i,n}(u)=\frac{n!}{i!(n-i)!}u^i(1-u)^{n-i}
+$$
+<figure><a class="lightgallery" href="/Nurbs/1682141901756.jpg" title="/Nurbs/1682141901756.jpg" data-thumbnail="/Nurbs/1682141901756.jpg">
+        <img
+            
+            loading="lazy"
+            src="/Nurbs/1682141901756.jpg"
+            srcset="/Nurbs/1682141901756.jpg, /Nurbs/1682141901756.jpg 1.5x, /Nurbs/1682141901756.jpg 2x"
+            sizes="auto"
+            alt="/Nurbs/1682141901756.jpg">
+    </a></figure></p>
+<h4 id="bernstein多项式性质" class="headerLink">
+    <a href="#bernstein%e5%a4%9a%e9%a1%b9%e5%bc%8f%e6%80%a7%e8%b4%a8" class="header-mark"></a>Bernstein多项式性质</h4><ul>
+<li>非负性：对所有的$i,n$和$0 \leq u \leq 1$ ,$B_{i,n}(u) \geq 0$</li>
+<li>规范性：$\sum_{i=0}^nB_{i,n}(u) = 1$,对所有的$0 \leq u \leq 1$</li>
+<li>端点性质：$B_{0,n}(u)=B_{n,n}(u)=1$</li>
+<li>最大值$B_{i,n}(u)$在区间$[1,0]$内只达到一次，既仅当$u=\frac{ i}{n}$时，$B_{i,n}(u)$取得最大值</li>
+<li>对称性：对于任意$n \gt 0$,多项式$B_{i,n}(u)$是关于$u=\frac{1}{2}$对称的</li>
+<li><strong>递推性质：$B_{i,n}(u)=(1-u)B_{i,n-1}(u) +uB_{i-1,n-1}(u)$,这里规定当$i \lt 0$或$i \gt n$时，$B_{i,n}(u) = 0$</strong></li>
+<li><strong>求导公式：$\dot{{B}}<em>{i,n}(u)= \frac{dB</em>{i,n}(u)}{du} = n(B_{i-1,n-1}(u)-B_{i,n-1}(u))$</strong></li>
+</ul>
+<h4 id="de-casteljaus-algorithm德卡斯特里奥算法" class="headerLink">
+    <a href="#de-casteljaus-algorithm%e5%be%b7%e5%8d%a1%e6%96%af%e7%89%b9%e9%87%8c%e5%a5%a5%e7%ae%97%e6%b3%95" class="header-mark"></a>De Casteljau&rsquo;s algorithm德卡斯特里奥算法</h4><p>是计算伯恩斯坦形式的多项式或贝塞尔曲线的递归方法。</p>
+<h4 id="p_kiu_o1-u_0p_k-1iu_ou_0p_k-1i1u_o" class="headerLink">
+    <a href="#p_kiu_o1-u_0p_k-1iu_ou_0p_k-1i1u_o" class="header-mark"></a>$$P_{k,i}(u_o)=(1-u_0)P_{k-1,i}(u_o)+u_0P_{k-1,i+1}(u_o)$$</h4><div style="display: flex; justify-content: center;">
+<image src="/Nurbs/240px-Bézier_2_big.gif"  style="width: 30%; height: auto; margin-right: 10px;">
+<image src="/Nurbs/Bézier_3_big.gif"  style="width: 30%; height: auto; margin-right: 10px;">
+<image src="/Nurbs/Bézier_4_big.gif"  style="width: 30%; height: auto; margin-right: 10px;">
+</div>
+![Bézier_2_big]()![Bézier_3_big]()![Bézier_4_big]()
+<p>利用DeCasteljau算法计算Bezier曲线上的一个点
+<figure><a class="lightgallery" href="/Nurbs/De%20Casteljau%27s.jpg" title="/Nurbs/De%20Casteljau&#39;s.jpg" data-thumbnail="/Nurbs/De%20Casteljau&#39;s.jpg">
+        <img
+            
+            loading="lazy"
+            src="/Nurbs/De%20Casteljau%27s.jpg"
+            srcset="/Nurbs/De%20Casteljau%27s.jpg, /Nurbs/De%20Casteljau%27s.jpg 1.5x, /Nurbs/De%20Casteljau%27s.jpg 2x"
+            sizes="auto"
+            alt="/Nurbs/De%20Casteljau&#39;s.jpg">
+    </a></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">DeCasteljau</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">u</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">Q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">u</span><span class="o">*</span><span class="n">Q</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="o">=</span><span class="n">Q</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//先求出P0 P1 ....Pn
+</span></span></span><span class="line"><span class="cl"><span class="c1">//在求出P1,0 P1,1 P1,2 ....P1,n-1
+</span></span></span><span class="line"><span class="cl"><span class="c1">//在求出P2,0 P2,1 P2,2 ....P2,n-2
+</span></span></span><span class="line"><span class="cl"><span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1">//在求出Pn-1,0 Pn-1,1
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Pn,0 便是曲线在u时的点
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-11-12</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/posts/nurbs/1.3bezier%E6%9B%B2%E7%BA%BF/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                    </span></div>
+            <div class="post-info-share"></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/nurbs/1.4%E6%9C%89%E7%90%86bezier%E6%9B%B2%E7%BA%BF/" class="prev" rel="prev" title="1.4有理Bezier曲线"><i class="fas fa-angle-left fa-fw"></i>1.4有理Bezier曲线</a>
+            <a href="/posts/nurbs/1.2%E5%B9%82%E5%9F%BA%E6%9B%B2%E7%BA%BF/" class="next" rel="next" title="1.2幂基曲线">1.2幂基曲线<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">yexuan</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/" target="_blank">皖ICP备2023023596号</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["yexuan333"],"clientID":"a6999600781701d4e9a3","clientSecret":"7d6a82ec2b58a2253b9b174f21ceb99dd78f6a8e","id":"2023-11-12T14:51:07+08:00","owner":"yexuan333","repo":"BlogGitTalKAPPK","title":"1.3Bezier曲线"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":10,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/js/gitalk.min.js" defer></script></div>
+</body>
+
+</html>
