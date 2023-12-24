@@ -50,7 +50,7 @@ CMake 的主要功能 (Main features of CMake)
 ```
 
 ### Do's and Don'ts 
-参考[Effective Modern CMake](https://gist.github.com/mbinna/c61dbb39bca0e4fb7d1f73b0d66a4fd1)
+[Effective Modern CMake](https://gist.github.com/mbinna/c61dbb39bca0e4fb7d1f73b0d66a4fd1)
 
-### [发行说明](https://cmake-doc.readthedocs.io/zh-cn/latest/release/index.html)
+### [Release Notes](https://cmake-doc.readthedocs.io/zh-cn/latest/release/index.html)
 
