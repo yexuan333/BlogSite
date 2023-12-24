@@ -1,2 +1,8 @@
 *.pem
-\public**
+public/
+themes/
+layouts/
+assets/
+archetypes/
+data/
+resources/

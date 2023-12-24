@@ -8,7 +8,7 @@ toc = true
 +++
 
 ## 3. 安装
-[官方install文档](https://cmake.org/cmake/help/latest/command/install.html#command:install)
+[官方文档](https://cmake.org/cmake/help/latest/command/install.html#command:install)
 
 `cmake --install .` 执行安装命令
 
