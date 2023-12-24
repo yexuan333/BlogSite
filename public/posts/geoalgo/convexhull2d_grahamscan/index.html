@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>ConvexHull2D GrahamScan - Home</title><meta name="Description" content=""><meta property="og:title" content="ConvexHull2D GrahamScan" />
-<meta property="og:description" content="简介ConvexHull2D是在二维平面上给定点集的最小凸多边形。Graham Scan算法是一种有效计算凸包的方法。 算法步骤 1. 找到基准点 从点" />
+<meta property="og:description" content="简介Graham Scan算法是一种有效计算凸包的方法。 算法步骤 1. 找到基准点 从点集中选取最低（或最高）Y坐标的点。 如果有多个点具有相同的Y坐标" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://124.223.208.207/posts/geoalgo/convexhull2d_grahamscan/" /><meta property="og:image" content="http://124.223.208.207/profile_photo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-11-27T02:50:04+08:00" />
@@ -20,7 +20,7 @@
 <meta name="twitter:image" content="http://124.223.208.207/profile_photo.png"/>
 
 <meta name="twitter:title" content="ConvexHull2D GrahamScan"/>
-<meta name="twitter:description" content="简介ConvexHull2D是在二维平面上给定点集的最小凸多边形。Graham Scan算法是一种有效计算凸包的方法。 算法步骤 1. 找到基准点 从点"/>
+<meta name="twitter:description" content="简介Graham Scan算法是一种有效计算凸包的方法。 算法步骤 1. 找到基准点 从点集中选取最低（或最高）Y坐标的点。 如果有多个点具有相同的Y坐标"/>
 <meta name="application-name" content="Home">
 <meta name="apple-mobile-web-app-title" content="Home">
 
@@ -38,7 +38,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/124.223.208.207\/posts\/geoalgo\/convexhull2d_grahamscan\/"
-        },"genre": "posts","wordcount":  395 ,
+        },"genre": "posts","wordcount":  364 ,
         "url": "http:\/\/124.223.208.207\/posts\/geoalgo\/convexhull2d_grahamscan\/","datePublished": "2023-11-27T02:50:04+08:00","dateModified": "2023-11-27T02:50:04+08:00","publisher": {
             "@type": "Organization",
             "name": "yexuan"},"author": {
@@ -150,7 +150,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">yexuan</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/"><i class="far fa-list-alt fa-fw"></i>计算几何</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-27">2023-11-27</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-27">2023-11-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 395 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-11-27">2023-11-27</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-11-27">2023-11-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 364 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
         </div><div class="details series-nav open">
                                 <div class="details-summary series-title">
                                     <span>系列 - 计算几何</span>
@@ -159,7 +159,8 @@
                                 <div class="details-content series-content">
                                     <nav>
                                         <ul><li><span class="active">ConvexHull2D GrahamScan</span></li>
-                                                    <li><a href="/posts/geoalgo/convexhull3d_incremental/">ConvexHull3D_Incremental</a></li></ul>
+                                                    <li><a href="/posts/geoalgo/convexhull3d_incremental/">ConvexHull3D Incremental</a></li>
+                                                    <li><a href="/posts/geoalgo/convexhull3d_quick/">ConvexHull3D Quick</a></li></ul>
                                     </nav>
                                 </div>
                             </div><div class="details toc" id="toc-static"  kept="">
@@ -193,7 +194,7 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="简介" class="headerLink">
-    <a href="#%e7%ae%80%e4%bb%8b" class="header-mark"></a>简介</h2><p><code>ConvexHull2D</code>是在二维平面上给定点集的最小凸多边形。<code>Graham Scan</code>算法是一种有效计算凸包的方法。</p>
+    <a href="#%e7%ae%80%e4%bb%8b" class="header-mark"></a>简介</h2><p><code>Graham Scan</code>算法是一种有效计算凸包的方法。</p>
   <div style="display: flex; justify-content: center;">
   <image src="/Geometry/GrahamScan.gif"  style="width: 40%; height: auto; margin-right: 10px;">
   </div>
@@ -258,13 +259,13 @@
     </div>
 
     <div class="post-nav"><a href="/posts/datastructure/%E4%BB%8Ertree%E5%88%B0rtree/" class="prev" rel="prev" title="RTree"><i class="fas fa-angle-left fa-fw"></i>RTree</a>
-            <a href="/posts/geoalgo/convexhull3d_incremental/" class="next" rel="next" title="ConvexHull3D_Incremental">ConvexHull3D_Incremental<i class="fas fa-angle-right fa-fw"></i></a></div>
+            <a href="/posts/geoalgo/convexhull3d_incremental/" class="next" rel="next" title="ConvexHull3D Incremental">ConvexHull3D Incremental<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
             </noscript></div></article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">
+        <div class="footer-container"><div class="footer-line"><a href="https://beian.mps.gov.cn/#/query/webSearch" target="_blank">沪公网安备31011302007515号</a></div><div class="footer-line">
                     由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.120.4">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">yexuan</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
                     <span class="icp"><a href="https://beian.miit.gov.cn/" target="_blank">皖ICP备2023023596号</a></span></div>

@@ -1,7 +1,7 @@
 # ConvexHull2D GrahamScan
 
 ## 简介
-`ConvexHull2D`是在二维平面上给定点集的最小凸多边形。`Graham Scan`算法是一种有效计算凸包的方法。
+`Graham Scan`算法是一种有效计算凸包的方法。
   <div style="display: flex; justify-content: center;">
   <image src="/Geometry/GrahamScan.gif"  style="width: 40%; height: auto; margin-right: 10px;">
   </div>

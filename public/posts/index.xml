@@ -4,8 +4,43 @@
         <link>http://124.223.208.207/posts/</link>
         <description>所有文章 | Home</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yexuan.d@qq.com (yexuan)</managingEditor>
-            <webMaster>yexuan.d@qq.com (yexuan)</webMaster><lastBuildDate>Sun, 10 Dec 2023 16:08:32 &#43;0800</lastBuildDate><atom:link href="http://124.223.208.207/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>ConvexHull3D_Incremental</title>
+            <webMaster>yexuan.d@qq.com (yexuan)</webMaster><lastBuildDate>Sun, 24 Dec 2023 21:11:43 &#43;0800</lastBuildDate><atom:link href="http://124.223.208.207/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>CMake常见变量</title>
+    <link>http://124.223.208.207/posts/cmake/cmake%E5%B8%B8%E8%A7%81%E5%8F%98%E9%87%8F/</link>
+    <pubDate>Sun, 24 Dec 2023 21:11:43 &#43;0800</pubDate><author>
+        <name>yexuan</name>
+    </author><guid>http://124.223.208.207/posts/cmake/cmake%E5%B8%B8%E8%A7%81%E5%8F%98%E9%87%8F/</guid>
+    <description><![CDATA[官方文档 中文文档 项目和版本信息 CMAKE_PROJECT_NAME: 项目名称。 PROJECT_NAME: 当前处理的项目名称。 PROJECT_VERSION, PROJECT_VERSION_MAJOR, PROJECT_VERSION_MINOR, PROJECT_VERSION_PATCH, PROJECT_VERSION_TWEAK: 项目的版本信息。 路径和目录 CMAKE_SOURCE_DIR: 顶级源代码目录的路径。 CMAKE_CURRENT_SOURCE_DIR: 当前处理的源代]]></description>
+</item><item>
+    <title>CMake导出与安装</title>
+    <link>http://124.223.208.207/posts/cmake/cmake%E5%AF%BC%E5%87%BA%E4%B8%8E%E5%AE%89%E8%A3%85/</link>
+    <pubDate>Sun, 24 Dec 2023 21:03:04 &#43;0800</pubDate><author>
+        <name>yexuan</name>
+    </author><guid>http://124.223.208.207/posts/cmake/cmake%E5%AF%BC%E5%87%BA%E4%B8%8E%E5%AE%89%E8%A3%85/</guid>
+    <description><![CDATA[3. 安装官方install文档 cmake --install . 执行安装命令 cmake --install . --config Release 以Release模式安装 cmake --install . --prefix &quot;/home/myuser/installdir&quot; 指定安装根目录安装，也可以设置CMAKE_INST]]></description>
+</item><item>
+    <title>CMake简介</title>
+    <link>http://124.223.208.207/posts/cmake/cmake%E7%AE%80%E4%BB%8B/</link>
+    <pubDate>Sun, 24 Dec 2023 03:07:04 &#43;0800</pubDate><author>
+        <name>yexuan</name>
+    </author><guid>http://124.223.208.207/posts/cmake/cmake%E7%AE%80%E4%BB%8B/</guid>
+    <description><![CDATA[中文文档 Modern CMake文档 Introduction to CMakeCMake 是一个开源的、跨平台的自动化构建系统，用于管理软件构建过程。它使用名为 CMakeLists.txt 的文件来描述构建过程，这使得它与传统的]]></description>
+</item><item>
+    <title>CMake基础</title>
+    <link>http://124.223.208.207/posts/cmake/cmake%E5%9F%BA%E7%A1%80/</link>
+    <pubDate>Sat, 23 Dec 2023 16:00:42 &#43;0800</pubDate><author>
+        <name>yexuan</name>
+    </author><guid>http://124.223.208.207/posts/cmake/cmake%E5%9F%BA%E7%A1%80/</guid>
+    <description><![CDATA[cmkae下载 cmake 官方教程 1. 变量与缓存 1.1 本地变量声明一个本地 ( local ) 变量： set(MY_VARIABLE &quot;value&quot;) 变量名通常全部用大写，变量值跟在其后。你可以通过 ${} 来解析一个变量，]]></description>
+</item><item>
+    <title>ConvexHull3D Quick</title>
+    <link>http://124.223.208.207/posts/geoalgo/convexhull3d_quick/</link>
+    <pubDate>Sun, 17 Dec 2023 22:06:22 &#43;0800</pubDate><author>
+        <name>yexuan</name>
+    </author><guid>http://124.223.208.207/posts/geoalgo/convexhull3d_quick/</guid>
+    <description><![CDATA[一组点的凸包是最小的凸集的点。凸包是数学和计算几何的基本结构。 例如，Boardman [1993] 在光谱数据分析中使用了凸包，而Weeks [1991] 则利用凸包来]]></description>
+</item><item>
+    <title>ConvexHull3D Incremental</title>
     <link>http://124.223.208.207/posts/geoalgo/convexhull3d_incremental/</link>
     <pubDate>Sun, 10 Dec 2023 16:08:32 &#43;0800</pubDate><author>
         <name>yexuan</name>
@@ -17,7 +52,7 @@
     <pubDate>Mon, 27 Nov 2023 02:50:04 &#43;0800</pubDate><author>
         <name>yexuan</name>
     </author><guid>http://124.223.208.207/posts/geoalgo/convexhull2d_grahamscan/</guid>
-    <description><![CDATA[简介ConvexHull2D是在二维平面上给定点集的最小凸多边形。Graham Scan算法是一种有效计算凸包的方法。 算法步骤 1. 找到基准点 从点]]></description>
+    <description><![CDATA[简介Graham Scan算法是一种有效计算凸包的方法。 算法步骤 1. 找到基准点 从点集中选取最低（或最高）Y坐标的点。 如果有多个点具有相同的Y坐标]]></description>
 </item><item>
     <title>RTree</title>
     <link>http://124.223.208.207/posts/datastructure/%E4%BB%8Ertree%E5%88%B0rtree/</link>
@@ -39,40 +74,5 @@
         <name>yexuan</name>
     </author><guid>http://124.223.208.207/posts/nurbs/1.2%E5%B9%82%E5%9F%BA%E6%9B%B2%E7%BA%BF/</guid>
     <description><![CDATA[幂基曲线（Power Basis Curve）是一种使用幂基函数（Power Basis Function）来表示的参数曲线。幂基曲线可以表示为一个多项式，这个多项]]></description>
-</item><item>
-    <title>1.3Bezier曲线</title>
-    <link>http://124.223.208.207/posts/nurbs/1.3bezier%E6%9B%B2%E7%BA%BF/</link>
-    <pubDate>Sun, 12 Nov 2023 14:51:07 &#43;0800</pubDate><author>
-        <name>yexuan</name>
-    </author><guid>http://124.223.208.207/posts/nurbs/1.3bezier%E6%9B%B2%E7%BA%BF/</guid>
-    <description><![CDATA[贝塞尔曲线是一种幂基曲线。一条n次Bezier曲线可以表示为 $$ C(u)=\sum_{i=0}^nB_{i,n}(u)P_i,0\leq u \leq 1 $$ 其中，基函数（也称为混合函数）$B_{i,n}(u)$是著名的n次B]]></description>
-</item><item>
-    <title>1.4有理Bezier曲线</title>
-    <link>http://124.223.208.207/posts/nurbs/1.4%E6%9C%89%E7%90%86bezier%E6%9B%B2%E7%BA%BF/</link>
-    <pubDate>Sun, 12 Nov 2023 14:51:07 &#43;0800</pubDate><author>
-        <name>yexuan</name>
-    </author><guid>http://124.223.208.207/posts/nurbs/1.4%E6%9C%89%E7%90%86bezier%E6%9B%B2%E7%BA%BF/</guid>
-    <description><![CDATA[用有理函数1表示Bezier曲线，有理Bezier曲线用有理函数表示的目的就是为了引入权重因子。权重因子使得有理Bezier曲线相较于Bez]]></description>
-</item><item>
-    <title>1.5张量积曲面</title>
-    <link>http://124.223.208.207/posts/nurbs/1.5%E5%BC%A0%E9%87%8F%E7%A7%AF%E6%9B%B2%E9%9D%A2/</link>
-    <pubDate>Sun, 12 Nov 2023 14:51:07 &#43;0800</pubDate><author>
-        <name>yexuan</name>
-    </author><guid>http://124.223.208.207/posts/nurbs/1.5%E5%BC%A0%E9%87%8F%E7%A7%AF%E6%9B%B2%E9%9D%A2/</guid>
-    <description><![CDATA[张量积方法是在两个方向上均采用曲线的处理方式，也采用基函数和对应的几何系数的乘积之和的形式表示曲面，基函数是$u$和$v$的二元函数，它由关]]></description>
-</item><item>
-    <title>2.1前言</title>
-    <link>http://124.223.208.207/posts/nurbs/2.1%E5%89%8D%E8%A8%80/</link>
-    <pubDate>Sun, 12 Nov 2023 14:51:07 &#43;0800</pubDate><author>
-        <name>yexuan</name>
-    </author><guid>http://124.223.208.207/posts/nurbs/2.1%E5%89%8D%E8%A8%80/</guid>
-    <description><![CDATA[Bezier曲线的缺点 表示能力有限：Bezier曲线无法直接表示某些常见的几何形状，例如圆和椭圆。为了表示这些形状，可能需要将多个Bezie]]></description>
-</item><item>
-    <title>2.2 B样条基函数的定义和性质</title>
-    <link>http://124.223.208.207/posts/nurbs/2.2b%E6%A0%B7%E6%9D%A1%E5%9F%BA%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E6%80%A7%E8%B4%A8/</link>
-    <pubDate>Sun, 12 Nov 2023 14:51:07 &#43;0800</pubDate><author>
-        <name>yexuan</name>
-    </author><guid>http://124.223.208.207/posts/nurbs/2.2b%E6%A0%B7%E6%9D%A1%E5%9F%BA%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E6%80%A7%E8%B4%A8/</guid>
-    <description><![CDATA[定义$$ N_{i,0}(u)= \begin{cases} 1 ;;若u_i \leq u&lt;u_{i+1} \ 0 ;;其他 \end{cases} $$ $$ N_{i,p}(u)=\frac{u-u_i}{u_{i+p}-u_i}N_{i,p-1}(u)+\frac{u_{i+p+1}-u}{u_{i+p+1}-u_{i+1}}N_{i+1,p-1}(u)(u) $$ $N_{i,0}(u)$是阶梯函数，他在半开区间$u \in [u_i,u_{i+1})$外都为]]></description>
 </item></channel>
 </rss>

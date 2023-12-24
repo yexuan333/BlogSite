@@ -4,10 +4,17 @@
         <link>http://124.223.208.207/series/</link>
         <description>Series - 系列 - Home</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yexuan.d@qq.com (yexuan)</managingEditor>
-            <webMaster>yexuan.d@qq.com (yexuan)</webMaster><lastBuildDate>Sun, 10 Dec 2023 16:08:32 &#43;0800</lastBuildDate><atom:link href="http://124.223.208.207/series/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>yexuan.d@qq.com (yexuan)</webMaster><lastBuildDate>Sun, 24 Dec 2023 21:11:43 &#43;0800</lastBuildDate><atom:link href="http://124.223.208.207/series/" rel="self" type="application/rss+xml" /><item>
+    <title>CMake</title>
+    <link>http://124.223.208.207/series/cmake/</link>
+    <pubDate>Sun, 24 Dec 2023 21:11:43 &#43;0800</pubDate><author>
+        <name>yexuan</name>
+    </author><guid>http://124.223.208.207/series/cmake/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>计算几何</title>
     <link>http://124.223.208.207/series/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/</link>
-    <pubDate>Sun, 10 Dec 2023 16:08:32 &#43;0800</pubDate><author>
+    <pubDate>Sun, 17 Dec 2023 22:06:22 &#43;0800</pubDate><author>
         <name>yexuan</name>
     </author><guid>http://124.223.208.207/series/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/</guid>
     <description><![CDATA[]]></description>

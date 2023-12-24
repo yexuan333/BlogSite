@@ -2,11 +2,17 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>http://124.223.208.207/series/cmake/</loc><lastmod>2023-12-24T21:11:43&#43;08:00</lastmod></url><url>
+            <loc>http://124.223.208.207/posts/cmake/cmake%E5%B8%B8%E8%A7%81%E5%8F%98%E9%87%8F/</loc><lastmod>2023-12-24T21:11:43&#43;08:00</lastmod></url><url>
+            <loc>http://124.223.208.207/</loc><lastmod>2023-12-24T21:11:43&#43;08:00</lastmod></url><url>
+            <loc>http://124.223.208.207/posts/</loc><lastmod>2023-12-24T21:11:43&#43;08:00</lastmod></url><url>
+            <loc>http://124.223.208.207/series/</loc><lastmod>2023-12-24T21:11:43&#43;08:00</lastmod></url><url>
+            <loc>http://124.223.208.207/posts/cmake/cmake%E5%AF%BC%E5%87%BA%E4%B8%8E%E5%AE%89%E8%A3%85/</loc><lastmod>2023-12-24T21:03:04&#43;08:00</lastmod></url><url>
+            <loc>http://124.223.208.207/posts/cmake/cmake%E7%AE%80%E4%BB%8B/</loc><lastmod>2023-12-24T03:07:04&#43;08:00</lastmod></url><url>
+            <loc>http://124.223.208.207/posts/cmake/cmake%E5%9F%BA%E7%A1%80/</loc><lastmod>2023-12-23T16:00:42&#43;08:00</lastmod></url><url>
+            <loc>http://124.223.208.207/posts/geoalgo/convexhull3d_quick/</loc><lastmod>2023-12-17T22:06:22&#43;08:00</lastmod></url><url>
+            <loc>http://124.223.208.207/series/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/</loc><lastmod>2023-12-17T22:06:22&#43;08:00</lastmod></url><url>
             <loc>http://124.223.208.207/posts/geoalgo/convexhull3d_incremental/</loc><lastmod>2023-12-10T16:08:32&#43;08:00</lastmod></url><url>
-            <loc>http://124.223.208.207/</loc><lastmod>2023-12-10T16:08:32&#43;08:00</lastmod></url><url>
-            <loc>http://124.223.208.207/posts/</loc><lastmod>2023-12-10T16:08:32&#43;08:00</lastmod></url><url>
-            <loc>http://124.223.208.207/series/</loc><lastmod>2023-12-10T16:08:32&#43;08:00</lastmod></url><url>
-            <loc>http://124.223.208.207/series/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/</loc><lastmod>2023-12-10T16:08:32&#43;08:00</lastmod></url><url>
             <loc>http://124.223.208.207/posts/geoalgo/convexhull2d_grahamscan/</loc><lastmod>2023-11-27T02:50:04&#43;08:00</lastmod></url><url>
             <loc>http://124.223.208.207/posts/datastructure/%E4%BB%8Ertree%E5%88%B0rtree/</loc><lastmod>2023-11-16T14:51:07&#43;08:00</lastmod></url><url>
             <loc>http://124.223.208.207/series/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc><lastmod>2023-11-16T14:51:07&#43;08:00</lastmod></url><url>

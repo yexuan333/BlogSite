@@ -1,4 +1,4 @@
-# ConvexHull3D_Incremental
+# ConvexHull3D Incremental
 
 
 ## 简介
