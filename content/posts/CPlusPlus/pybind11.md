@@ -14,3 +14,21 @@ pybind11 是基于 Wenzel Jakob 在 2016 年创建的 pybind 项目的。pybind 
 - vcpkg `vcpkg install pybind11`
 
 ## 基础知识
+#### 标头和命名空间约定
+```cpp
+#include <pybind11/pybind11.h>
+namespace py = pybind11;
+PYBIND11_MODULE(example, m) {
+    m.doc() = "pybind11 example plugin"; // optional module docstring
+    m.def("add", &[](int a, int b){return a + b}, "A function that adds two numbers",py::arg("A") = 1, py::arg("B") = 1);
+}
+// 绑定了一个add函数，并添加了函数类型信息，函数名，默认参数，说明等
+```
+```py
+import example
+example.add(1, 1) #  >>> 2
+example.add() #  >>> 2 
+```
+PYBIND11_MODULE创建一个函数，当从 Python 中发出语句时将调用该函数。模块名称`example`作为第一个宏参数给出（它不应该用引号引起来）。第二个`m`定义一个类型的变量，该变量 是用于创建绑定的主接口。该方法生成向 Python 公开函数的绑定代码。
+
+#### 基础知识
