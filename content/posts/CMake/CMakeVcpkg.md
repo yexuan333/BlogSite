@@ -1,7 +1,7 @@
 +++
 title = 'CMakeVcpkg(Doing)'
 date = 2023-12-24T21:29:24+08:00
-draft = true
+draft = false
 series = ["CMake"]
 series_weight = 1
 toc = true
