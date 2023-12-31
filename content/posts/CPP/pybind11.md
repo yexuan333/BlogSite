@@ -1,5 +1,5 @@
 +++
-title = 'Pybind11'
+title = 'Pybind11教程'
 date = 2023-12-27T01:52:39+08:00
 draft = false
 series = ["CPlusPlus"]
@@ -14,7 +14,7 @@ pybind11 是基于 Wenzel Jakob 在 2016 年创建的 pybind 项目的。pybind 
 - vcpkg `vcpkg install pybind11`
 
 
-## 简例
+## 示例
 `PYBIND11_MODULE`创建一个函数，`example`是模块名称（无引号）。`m`定义一个类型的变量，该变量是用于创建绑定的主接口。
 ```cpp
 #include <pybind11/pybind11.h>
@@ -152,7 +152,7 @@ py::bind_map<std::map<std::string, double>>(m, "MapStringDouble");
 ##### 编码
 见[Strings, bytes and Unicode conversions](https://pybind11.readthedocs.io/en/stable/advanced/cast/strings.html)
 
-## 符号文件
+## 符号
 使用 pybind11 生成的 .pyd 文件通常不会自动生成对应的 `.pyi` 文件。`.pyi` 文件是 Python 接口文件，用于提供类型提示和代码补全等功能，增强 IDE 支持和静态类型检查。缺少 `.pyi` 文件可能会导致 IDE 无法提供完整的代码补全和类型提示功能。用户可能需要手动编写或使用其他工具生成 `.pyi` 文件来弥补这一点。
 
 安装`pybind11-stubgen`生成`.pyi` [github仓库地址](https://github.com/sizmailov/pybind11-stubgen)
