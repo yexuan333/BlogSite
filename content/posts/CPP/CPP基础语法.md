@@ -1,7 +1,8 @@
 +++
-title = 'CPP基础语法'
+title = 'CPP基础语法（Doing）'
 date = 2023-12-31T19:26:49+08:00
 draft = false
+series = ["CPlusPlus"]
 +++
 
 ## 基本语法
