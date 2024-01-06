@@ -135,3 +135,9 @@ void print(int i, double f) {
 } 
 ```
 ##### 函数模板
+```cpp
+template <typename T>
+T add(T a, T b) {
+    return a + b;
+}
+```
