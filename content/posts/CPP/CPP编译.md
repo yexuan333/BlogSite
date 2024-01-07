@@ -2,6 +2,7 @@
 title = 'CPP编译（TODO）'
 date = 2024-01-07T19:10:50+08:00
 draft = false
+series = ["CPlusPlus"]
 +++
 #### 头文件内容
 - 函数原型。
