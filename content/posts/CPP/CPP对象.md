@@ -63,6 +63,22 @@ series = ["CPlusPlus"]
         MyClass(int x, std::string y) {}
     };
   ```
+- 列表初始化
+  - 只要提供与某个构造函数的参数列表匹配的内容，并用大括号将它们括起，就可以构造一个类
+  ```cpp
+  class MyClass {
+    public:
+        MyClass(int a);
+        MyClass();
+  };
+
+  void main(){
+    MyClass c1 = {};
+    MyClass c2{};
+    MyClass c3{1};
+    MyClass c4 = {1};
+  }
+  ```
 - `default`声明
   - 显式要求编译器实现默认的构造函数等。
     ```cpp
@@ -84,11 +100,11 @@ series = ["CPlusPlus"]
     };
     ```
 
-inline 成员函数
+
+- inline 成员函数
 在类声明中定义方法等同于用原型替换方法定义，然后在类声明的后面将定义改写为内联函数。
 
-列表初始化
-只要提供与某个构造函数的参数列表匹配的内容，并用大括号将它们括起，就可以构造一个类吗
+this指针
 
 const 成员函数，保证函数不会修改调用对象
 ```cpp
