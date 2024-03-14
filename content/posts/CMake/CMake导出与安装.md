@@ -10,7 +10,7 @@ toc = true
 ## 3. 安装
 [官方文档](https://cmake.org/cmake/help/latest/command/install.html#command:install)
 
-`cmake --install .` 执行安装命令
+`cmake --install .` 执行安装命令，会把文件安装到安装目录
 
 `cmake --install . --config Release` 以Release模式安装
 
@@ -103,7 +103,18 @@ install(RUNTIME_DEPENDENCY_SET <set-name>
         [DIRECTORIES <dir>...]
         )
 ```
+以下任何一条命令都能够执行安装：
+```bash
+# From the build directory (pick one)
+~/package/build $ make install
+~/package/build $ cmake --build . --target install
+~/package/build $ cmake --install . # CMake 3.15+ only
 
+# From the source directory (pick one)
+~/package $ make -C build install
+~/package $ cmake --build build --target install
+~/package $ cmake --install build # CMake 3.15+ only
+```
 ## 4. 测试
 
 ## 5. 打包
