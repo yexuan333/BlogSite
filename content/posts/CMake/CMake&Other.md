@@ -1,5 +1,5 @@
 +++
-title = 'CMakeVcpkg(TODO)'
+title = 'CMake & Other'
 date = 2023-12-24T21:29:24+08:00
 draft = false
 series = ["CMake"]
@@ -8,7 +8,7 @@ toc = true
 +++
 
 [Microsoft 文档](https://learn.microsoft.com/zh-cn/vcpkg/users/buildsystems/cmake-integration)
-## 在CMake项目中集成vcpkg
+## CMake & Vcpkg
 一般情况用以下方式一，如果触发了乱七八糟的问题试试方式二，比如方式一和.net core的项目冲突（3.29）
 ``` cmake
 #方式一
@@ -17,7 +17,7 @@ set(CMAKE_TOOLCHAIN_FILE "**/vcpkg/scripts/buildsystems/vcpkg.cmake")
 list(APPEND CMAKE_PREFIX_PATH "**/vcpkg/installed/x64-windows") 
 ```
 
-## 使用CMake 创建.Net Core项目于
+## CMake & .Net Core
 ``` cmake
 
 set(CMAKE_CSharp_FLAGS "/langversion:10.0 /platform:x64" )
@@ -41,7 +41,7 @@ set_property(TARGET MyNetProject PROPERTY VS_PACKAGE_REFERENCES
 add_dependencies(MyNetProject WeldRecognition)
 ```
 
-## 使用CPack 打包nuget
+## CPack & Nuget
 ### 安装文件
 打包前把需要的文件安装好，nuget规定了文件目录详情见[nuget](https://learn.microsoft.com/zh-cn/nuget/create-packages/creating-a-package)
 - 根目录：放readme.txt
