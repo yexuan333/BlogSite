@@ -1,6 +1,6 @@
 +++
 title = '一键发布NuGet脚本'
-date = 2024-3-14T21:11:43+08:00
+date = 2024-03-14T21:11:43+08:00
 draft = false
 series = ["Snippets"]
 toc = true
@@ -19,19 +19,19 @@ toc = true
 7. **发布 NuGet 包**:最后，脚本使用 dotnet nuget push 命令将生成的 NuGet 包推送到指定的 NuGet 服务器。
 
 ```ps1
-$projectSelect = Read-Host -Prompt "Enter the project name 1 is RpBevelNet other is RpBevelNetCompat"
+$projectSelect = Read-Host -Prompt "Enter the project name 1 is XXX other is Other"
 if ($projectSelect -eq 1) {
-    $project = "RpBevelNet"
+    $project = "XXX"
 }else {
-    $project = "RpBevelNetCompat"
+    $project = "Other"
 }
 
 # 提示用户输入发布说明
 $releaseNote = Read-Host -Prompt "Enter the release note"
 
 # NuGet 包的注册信息 URL
-$url = "https://gitlab.roboticplus.com:2025/v3/index.json"
-$PackageUrl = "http://gitlab.roboticplus.com:2023/v3/registration/$project/index.json"
+$url = "***"
+$PackageUrl = "***/registration/$project/index.json"
 
 # 使用 Invoke-RestMethod 发送 HTTP GET 请求并自动解析 JSON 响应
 $response = Invoke-RestMethod -Uri $PackageUrl
